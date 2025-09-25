@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABIIBANIDO99 - Payment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(30, 60, 114, 0.85), rgba(42, 82, 152, 0.9)), url('https://files.catbox.moe/kzr6tb.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .payment-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .payment-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .payment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+        }
+
+        .payment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .payment-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            color: #4facfe;
+        }
+
+        .payment-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #00f2fe;
+        }
+
+        .payment-details {
+            text-align: left;
+            margin-top: 15px;
+        }
+
+        .payment-details p {
+            margin: 12px 0;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            transition: background 0.3s;
+        }
+
+        .payment-details p:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .payment-details span {
+            font-weight: bold;
+            color: #00f2fe;
+        }
+
+        .channel-menu {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .channel-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+        }
+
+        .channel-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(79, 172, 254, 0.5);
+            background: linear-gradient(to right, #00f2fe, #4facfe);
+        }
+
+        .instructions {
+            margin-top: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #00f2fe;
+        }
+
+        .instructions h3 {
+            margin-bottom: 15px;
+            color: #00f2fe;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #00f2fe;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .payment-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-details p {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .copy-btn {
+                margin-left: 0;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="logo">ABIIBANIDO99</h1>
+            <p class="subtitle">Payment-AbiiBanido99 - Lakukan pembayaran dengan mudah dan aman</p>
+            <span class="badge">Terpercaya • Cepat • Aman</span>
+        </header>
+        
+        <div class="payment-info">
+            <div class="payment-card">
+                <div class="payment-icon">
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+                <h2 class="payment-title">DANA</h2>
+                <div class="payment-details">
+                    <p>Nomor: <span id="dana-number">089510168678</span> 
+                       <button class="copy-btn" onclick="copyToClipboard('dana-number')">Salin</button>
+                    </p>
+                    <p>Atas Nama: <span>YUANITA</span></p>
+                </div>
+            </div>
+            
+            <div class="payment-card">
+                <div class="payment-icon">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <h2 class="payment-title">Metode Lainnya</h2>
+                <div class="payment-details">
+                    <p>OVO: <span>089510168678</span></p>
+                    <p>Gopay: <span>089510168678</span></p>
+                    <p>Atas Nama: <span>YUANITA</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> Cara Pembayaran:</h3>
+            <ol>
+                <li>Pilih metode pembayaran yang diinginkan (DANA, OVO, atau Gopay)</li>
+                <li>Transfer sesuai nominal yang diminta ke nomor yang tertera</li>
+                <li>Simpan bukti transfer/screenshot</li>
+                <li>Konfirmasi pembayaran melalui saluran Telegram di bawah</li>
+                <li>Tunggu konfirmasi dari admin</li>
+            </ol>
+        </div>
+        
+        <div class="channel-menu">
+            <a href="https://t.me/murbandfreeabii" class="channel-btn" target="_blank">
+                <i class="fab fa-telegram"></i> Konfirmasi Pembayaran via Telegram
+            </a>
+        </div>
+        
+        <footer>
+            <p>&copy; 2023 ABIIBANIDO99 Payment Gateway By Riiwwxz Official. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Animasi untuk elemen payment card saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentCards = document.querySelectorAll('.payment-card');
+            
+            paymentCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s, transform 0.5s';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+
+        // Fungsi untuk menyalin teks ke clipboard
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Nomor berhasil disalin: ' + text);
+            }, function(err) {
+                console.error('Gagal menyalin teks: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
